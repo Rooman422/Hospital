@@ -1,0 +1,143 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Site{% endblock %}</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{% static 'mainapp/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'mainapp/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'mainapp/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+</head>
+<body>
+
+<!-- Header -->
+<div class="header_section">
+   <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+         <a class="navbar-brand" href="{% url 'index' %}">
+            <img src="{% static 'mainapp/images/logo.png' %}" alt="Logo">
+         </a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+               <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+               <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">About</a></li>
+               <li class="nav-item"><a class="nav-link" href="{% url 'treatments' %}">Treatment</a></li>
+               <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Doctors</a></li>
+               <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Blog</a></li>
+               <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Contact</a></li>
+            </ul>
+         </div>
+      </nav>
+
+      <div class="custom_bg">
+         <div class="custom_menu">
+            <ul>
+               <li><a href="{% url 'index' %}">Index</a></li>
+               <li><a href="{% url 'index' %}">About</a></li>
+               <li><a href="{% url 'treatments' %}">Treatment</a></li>
+               <li><a href="{% url 'index' %}">Doctors</a></li>
+               <li><a href="{% url 'index' %}">Blog</a></li>
+               <li><a href="{% url 'index' %}">Contact</a></li>
+            </ul>
+         </div>
+         <div class="search_btn">
+            <ul>
+                {% if user.is_authenticated %}
+                    <li><a href="#"><i class="fa fa-user"></i> Hi, {{ user.username }}</a></li>
+                    <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}"><i class="fa fa-user"></i> Login</a></li>
+                    <li><a href="{% url 'signup' %}"><i class="fa fa-user-plus"></i> Sign Up</a></li>
+                {% endif %}
+                <li><a href="#"><i class="fa fa-search"></i></a></li>
+            </ul>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+<!-- Dynamic Content Block -->
+{% block content %}
+{% endblock %}
+
+<!-- Footer -->
+<div class="footer_section">
+   <div class="container">
+      <div class="input_bt">
+         <input type="text" class="mail_bt" placeholder="Enter Your Email" name="email">
+         <span class="subscribe_bt"><a href="#">Subscribe</a></span>
+      </div>
+      <div class="footer_section_2">
+         <div class="row">
+            <div class="col-lg-3 col-sm-6">
+               <h3 class="footer_taital">Address</h3>
+               <ul>
+                  <li><a href="#"><i class="fa fa-map-marker"></i> Making this the first true</a></li>
+                  <li><a href="#"><i class="fa fa-phone"></i> +01 1234567890</a></li>
+                  <li><a href="#"><i class="fa fa-envelope"></i> demo@gmail.com</a></li>
+               </ul>
+               <div class="footer_social_icon">
+                  <ul>
+                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                     <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                     <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                  </ul>
+               </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-6">
+               <h3 class="footer_taital">Useful Links</h3>
+               <ul>
+                  <li><a href="{% url 'index' %}">Home</a></li>
+                  <li><a href="{% url 'index' %}">About</a></li>
+                  <li><a href="{% url 'index' %}">Doctors</a></li>
+                  <li><a href="{% url 'index' %}">News</a></li>
+                  <li><a href="{% url 'index' %}">Treatment</a></li>
+                  <li><a href="{% url 'index' %}">Contact</a></li>
+               </ul>
+            </div>
+
+            <div class="col-lg-3 col-sm-6">
+               <h3 class="footer_taital">Help & Support</h3>
+               <p class="ipsum_text">Making it look like readable English. Many desktop publishing packages...</p>
+            </div>
+
+            <div class="col-lg-3 col-sm-6">
+               <h3 class="footer_taital">News</h3>
+               <div class="dryfood_text">
+                  <img src="{% static 'mainapp/images/img-4.png' %}" alt=""><span class="padding_15">Normal distribution</span>
+               </div>
+               <div class="dryfood_text">
+                  <img src="{% static 'mainapp/images/img-5.png' %}" alt=""><span class="padding_15">Normal distribution</span>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<!-- JS Scripts -->
+<script src="{% static 'mainapp/js/jquery.min.js' %}"></script>
+<script src="{% static 'mainapp/js/bootstrap.min.js' %}"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+
+<!-- Page-specific JS -->
+{% block extra_js %}{% endblock %}
+
+</body>
+</html>
+

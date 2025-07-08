@@ -1,0 +1,40 @@
+<!-- search_appointment.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="appointment-list">
+  <h2>My Scheduled Appointments</h2>
+  
+  {% if appointments %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Doctor</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for appointment in appointments %}
+        <tr>
+          <td>Dr. {{ appointment.doctor.name }}</td>
+          <td>{{ appointment.appointment_date|date:"M d, Y" }}</td>
+          <td>{{ appointment.appointment_time|default:"-" }}</td>
+          <td>
+            <span class="badge {% if appointment.is_confirmed %}bg-success{% else %}bg-warning{% endif %}">
+              {% if appointment.is_confirmed %}Confirmed{% else %}Pending{% endif %}
+            </span>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <div class="alert alert-info">
+      You have no upcoming appointments. 
+      <a href="{% url 'index' %}">Book one now</a>.
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

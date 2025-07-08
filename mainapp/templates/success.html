@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load form_tags %}
+
+
+{% block content %}
+<div class="container mt-5 text-center">
+  <h2 class="mb-4">🎉 Appointment Confirmed!</h2>
+
+  {% if appointment %}
+  <div class="card p-4 shadow-sm">
+    <p><strong>Booking ID:</strong> {{ appointment.id }}</p>
+    <p><strong>Patient:</strong> {{ appointment.patient_name }}</p>
+    <p><strong>Doctor:</strong> {{ appointment.doctor.name }}</p>
+    <p><strong>Date:</strong> {{ appointment.appointment_date }}</p>
+    <p><strong>Phone:</strong> {{ appointment.phone_number }}</p>
+    <p><strong>Time:</strong> {{ appointment.appointment_time }}</p>
+    <p><strong>Notes:</strong> {{ appointment.notes }}</p>
+    
+
+  </div>
+  {% else %}
+  <div class="alert alert-warning">Appointment not found.</div>
+  {% endif %}
+
+  <a href="{% url 'index' %}" class="btn btn-primary mt-4">Back to Home</a>
+</div>
+{% endblock %}
